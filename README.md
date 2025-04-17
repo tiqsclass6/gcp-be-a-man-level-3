@@ -155,24 +155,6 @@ terraform destroy -auto-approve
 
 ---
 
-### ✅ RDP Connection Fails (Black Screen or No Login Prompt)
-
-- Use the GCP **Serial Console** to create a user:
-
-  ```cmd
-  net user adminuser StrongP@ssword! /add
-  net localgroup administrators adminuser /add
-  ```
-
-- Make sure the VM has a static external IP and firewall allows port 3389.
-- Reset the VM after enabling serial access if needed:
-
-  ```bash
-  gcloud compute instances reset <vm-name> --zone=<zone>
-  ```
-
----
-
 ### ✅ Cannot SSH Into Linux Web VMs
 
 - Confirm that the `tags` on each VM match the `target_tags` in your firewall rules.
