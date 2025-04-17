@@ -1,47 +1,64 @@
-resource "google_compute_firewall" "iap_ssh" {
-  name    = "allow-iap-ssh"
-  network = google_compute_network.vpc.name
-
-  direction = "INGRESS"
-  priority  = 1000
-
-  source_ranges = ["35.235.240.0/20"]
-  target_tags   = ["multi-region-vm"]
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-}
-
-resource "google_compute_firewall" "icmp_restricted" {
-  name    = "allow-internal-icmp"
-  network = google_compute_network.vpc.name
-
-  direction = "INGRESS"
-  priority  = 1001
-
-  source_ranges = ["10.233.40.0/24"]
-  target_tags   = ["multi-region-vm"]
-
-  allow {
-    protocol = "icmp"
-  }
-}
-
-resource "google_compute_firewall" "allow_http" {
-  name    = "allow-http"
-  network = google_compute_network.vpc.name
-
+# HTTP: Iowa ➝ Brazil Web (Port 80)
+resource "google_compute_firewall" "http-iowa-to-brazil" {
+  name          = "http-iowa-to-brazil"
+  network       = google_compute_network.vpc.name
   direction     = "INGRESS"
-  priority      = 1000
-  target_tags   = ["multi-region-vm"]
-  source_ranges = ["0.0.0.0/0"]
+  source_tags   = ["iowa-rdp"]
+  target_tags   = ["brazil-web"]
 
   allow {
     protocol = "tcp"
     ports    = ["80"]
   }
 
-  description = "Allow HTTP from the internet to view startup script"
+  priority = 998
+}
+
+# HTTP: Brazil Web ➝ Tokyo Web (Port 80)
+resource "google_compute_firewall" "http-brazil-to-tokyo" {
+  name          = "http-brazil-to-tokyo"
+  network       = google_compute_network.vpc.name
+  direction     = "INGRESS"
+  source_tags   = ["brazil-rdp"]
+  target_tags   = ["tokyo-web"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  priority = 999
+}
+
+# Public RDP: Internet ➝ Sao Paulo RDP (Port 3389)
+resource "google_compute_firewall" "rdp-public-brazil" {
+  name          = "rdp-public-brazil"
+  network       = google_compute_network.vpc.name
+  direction     = "INGRESS"
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["brazil-rdp"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3389"]
+  }
+
+  priority = 1000
+}
+
+
+# Public RDP: Internet ➝ Iowa RDP (Port 3389)
+resource "google_compute_firewall" "rdp-public-iowa" {
+  name          = "rdp-public-iowa"
+  network       = google_compute_network.vpc.name
+  direction     = "INGRESS"
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["iowa-rdp"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3389"]
+  }
+
+  priority = 1000
 }

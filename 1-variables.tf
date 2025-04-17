@@ -1,41 +1,47 @@
 variable "project_id" {
-  description = "GCP project ID"
+  description = "GCP project ID to deploy resources into"
   type        = string
-  default     = "class-6-5-tiqs"
+  default     = "<Enter Project ID Here>"
 }
 
-variable "default_region" {
-  description = "Default region (Tokyo)"
+variable "vpc_name" {
+  description = "Name of the custom VPC"
   type        = string
-  default     = "asia-northeast1"
+  default     = "multi-region-vpc"
 }
 
-variable "default_zone" {
-  description = "Default zone (Tokyo)"
+variable "iowa_subnet_name" {
+  description = "Subnet name for Iowa region"
   type        = string
-  default     = "asia-northeast1-a"
+  default     = "iowa-subnet"
 }
 
-variable "region_sao_paulo" {
-  description = "Region for São Paulo"
+variable "sao_paulo_subnet_name" {
+  description = "Subnet name for São Paulo region"
   type        = string
-  default     = "southamerica-east1"
+  default     = "sao-paulo-subnet"
 }
 
-variable "zone_sao_paulo" {
-  description = "Zone for São Paulo"
+variable "tokyo_subnet_name" {
+  description = "Subnet name for Tokyo region"
+  type        = string
+  default     = "tokyo-subnet"
+}
+
+variable "iowa_zone" {
+  description = "Zone for the Iowa VM"
+  type        = string
+  default     = "us-central1-a"
+}
+
+variable "sao_paulo_zone" {
+  description = "Zone for the Sao Paulo VM"
   type        = string
   default     = "southamerica-east1-a"
 }
 
-variable "vpc_name" {
-  default = "multi-region-vpc"
-}
-
-variable "tokyo_subnet_cidr" {
-  default = "10.233.10.0/24"
-}
-
-variable "sao_paulo_subnet_cidr" {
-  default = "10.233.40.0/24"
+variable "tokyo_zone" {
+  description = "Zone for the Tokyo VM"
+  type        = string
+  default     = "asia-northeast1-a"
 }
