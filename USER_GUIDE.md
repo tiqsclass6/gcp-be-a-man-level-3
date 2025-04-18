@@ -63,48 +63,7 @@ Reserve these IPs in the respective regions:
 
 ---
 
-### ◾️ 3. Firewall Rules
-
-Go to **VPC Network > Firewall** and create:
-
-#### a) Allow HTTP from Iowa to Brazil
-
-- Name: `http-iowa-to-brazil`
-- Targets: `brazil-web`
-- Source tags: `iowa-rdp`
-- Protocol: TCP 80
-
-#### b) Allow HTTP from Brazil to Tokyo
-
-- Name: `http-brazil-to-tokyo`
-- Targets: `tokyo-web`
-- Source tags: `brazil-web`
-- Protocol: TCP 80
-
-#### c) RDP Rules Between Iowa & Brazil
-
-- `rdp-iowa-to-brazil`: target `brazil-rdp`, source `iowa-rdp`, port TCP 3389
-- `rdp-brazil-to-iowa`: target `iowa-rdp`, source `brazil-rdp`, port TCP 3389
-
-#### d) SSH to Linux VMs (Optional)
-
-- Name: `ssh-access`
-- Targets: `brazil-web`, `tokyo-web`
-- Source IPs: `0.0.0.0/0` or your IP
-- Protocol: TCP 22
-
-#### e) Public HTTP for Iowa RDP
-
-- Name: `allow-http-public`
-- Target: `iowa-rdp`
-- Source range: `0.0.0.0/0`
-- Protocol: TCP 80
-
-![Firewall Rules](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-firewall.jpg)
-
----
-
-### ◾️ 4. VM Creation
+### ◾️ 3. VM Creation
 
 Navigate to: **Compute Engine > VM Instances**
 
@@ -150,6 +109,47 @@ Navigate to: **Compute Engine > VM Instances**
 
 ![VM Instances - Terraform](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-vms-terraform.jpg)
 ![All VM Instances](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-vms.jpg)
+
+---
+
+### ◾️ 4. Firewall Rules
+
+Go to **VPC Network > Firewall** and create:
+
+#### a) Allow HTTP from Iowa to Brazil
+
+- Name: `http-iowa-to-brazil`
+- Targets: `brazil-web`
+- Source tags: `iowa-rdp`
+- Protocol: TCP 80
+
+#### b) Allow HTTP from Brazil to Tokyo
+
+- Name: `http-brazil-to-tokyo`
+- Targets: `tokyo-web`
+- Source tags: `brazil-web`
+- Protocol: TCP 80
+
+#### c) RDP Rules Between Iowa & Brazil
+
+- `rdp-iowa-to-brazil`: target `brazil-rdp`, source `iowa-rdp`, port TCP 3389
+- `rdp-brazil-to-iowa`: target `iowa-rdp`, source `brazil-rdp`, port TCP 3389
+
+#### d) SSH to Linux VMs (Optional)
+
+- Name: `ssh-access`
+- Targets: `brazil-web`, `tokyo-web`
+- Source IPs: `0.0.0.0/0` or your IP
+- Protocol: TCP 22
+
+#### e) Public HTTP for Iowa RDP
+
+- Name: `allow-http-public`
+- Target: `iowa-rdp`
+- Source range: `0.0.0.0/0`
+- Protocol: TCP 80
+
+![Firewall Rules](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-firewall.jpg)
 
 ---
 
