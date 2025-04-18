@@ -147,8 +147,8 @@ Navigate to: **Compute Engine > VM Instances**
 - External IP: `ip-tokyo-web`
 - Tag: `tokyo-web`
 - Startup script: Paste contents of `japan-startup.sh`
-- 📸 **Screenshot full VM config page with startup script**
 
+![VM Instances - Terraform](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-vms-terraform.jpg)
 ![All VM Instances](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-vms.jpg)
 
 ---
@@ -163,8 +163,6 @@ Navigate to: **Compute Engine > VM Instances**
 | `brazil-rdp` | `iowa-rdp`   | 3389 | ✅      |
 | Public       | `iowa-rdp`   | 80   | ✅      |
 | Public       | Brazil/Tokyo | 80   | ❌      |
-
-![VM Instances - Terraform](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-vms-terraform.jpg)
 
 ---
 
