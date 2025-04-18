@@ -164,6 +164,8 @@ Go to **VPC Network > Firewall** and create:
 | Public       | `iowa-rdp`   | 80   | ✅      |
 | Public       | Brazil/Tokyo | 80   | ❌      |
 
+![Firewall Rules](https://github.com/tiqsclass6/gcp-be-a-man-level-3/blob/main/Screenshots/BAM3-firewall-terraform.jpg)
+
 ---
 
 ## 🚪 Access Details
